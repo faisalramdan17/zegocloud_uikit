@@ -10,7 +10,8 @@ import 'package:zegocloud_uikit/core/core.dart';
 class AuthService {
   /// Local virtual get user login session
   static Future<void> getUserLoginSession() async {
-    final cacheUserID = LocalStorage.instance.getString(Variables.cacheUserIDKey) ?? '';
+    final cacheUserID =
+        LocalStorage.instance.getString(Variables.cacheUserIDKey) ?? '';
     if (cacheUserID.isNotEmpty) {
       final user = UserInfo.fromJson(json.decode(cacheUserID));
       Session.currentUser = user;
@@ -27,15 +28,16 @@ class AuthService {
       name: phoneNumber,
     );
     Session.currentUser = user;
-    await LocalStorage.instance.setString(Variables.cacheUserIDKey, json.encode(user.toJson()));
+    await LocalStorage.instance
+        .setString(Variables.cacheUserIDKey, json.encode(user.toJson()));
   }
 
   /// On user login
-  static void onUserLogin() {
+  static Future<void> onUserLogin() async {
     final currentUser = Session.currentUser!;
 
     /// 7/8: initialized ZegoUIKitPrebuiltCallInvitationService when account is logged in or re-logged in
-    ZegoUIKitPrebuiltCallInvitationService().init(
+    await ZegoUIKitPrebuiltCallInvitationService().init(
       appID: Variables.appID,
       appSign: Variables.appSign,
       userID: currentUser.id,
@@ -55,7 +57,9 @@ class AuthService {
                 : ZegoUIKitPrebuiltCallConfig.oneOnOneVoiceCall();
 
         /// Custom avatar
-        config.avatarBuilder = (_, Size size, ZegoUIKitUser? user, Map<String, dynamic> extraInfo) => AvatarImage(
+        config.avatarBuilder = (_, Size size, ZegoUIKitUser? user,
+                Map<String, dynamic> extraInfo) =>
+            AvatarImage(
               size: size,
               user: user,
               extraInfo: extraInfo,
@@ -63,8 +67,10 @@ class AuthService {
 
         /// Support minimizing, show minimizing button
         config.topMenuBar.isVisible = true;
-        config.topMenuBar.buttons.insert(0, ZegoCallMenuBarButtonName.minimizingButton);
-        config.topMenuBar.buttons.insert(1, ZegoCallMenuBarButtonName.soundEffectButton);
+        config.topMenuBar.buttons
+            .insert(0, ZegoCallMenuBarButtonName.minimizingButton);
+        config.topMenuBar.buttons
+            .insert(1, ZegoCallMenuBarButtonName.soundEffectButton);
 
         return config;
       },
@@ -77,8 +83,8 @@ class AuthService {
   }
 
   /// On user logout
-  static void onUserLogout() {
+  static Future<void> onUserLogout() async {
     /// 8/8: de-initialization ZegoUIKitPrebuiltCallInvitationService when account is logged out
-    ZegoUIKitPrebuiltCallInvitationService().uninit();
+    await ZegoUIKitPrebuiltCallInvitationService().uninit();
   }
 }

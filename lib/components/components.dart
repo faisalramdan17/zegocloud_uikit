@@ -1,4 +1,4 @@
-library components;
+library;
 
 export 'butttons/app_rounded_button.dart';
 export 'commons/avatar_image.dart';

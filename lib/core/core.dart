@@ -1,4 +1,4 @@
-library core;
+library;
 
 export 'constants/variables.dart';
 export 'extensions/build_context.dart';

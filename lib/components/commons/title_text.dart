@@ -27,7 +27,8 @@ class TitleText extends StatelessWidget {
     return Padding(
       padding: padding ?? const EdgeInsets.symmetric(horizontal: 15.0),
       child: Column(
-        crossAxisAlignment: centerText ? CrossAxisAlignment.center : CrossAxisAlignment.start,
+        crossAxisAlignment:
+            centerText ? CrossAxisAlignment.center : CrossAxisAlignment.start,
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 1),
@@ -49,7 +50,8 @@ class TitleText extends StatelessWidget {
                 subtitle!,
                 textAlign: centerText ? TextAlign.center : TextAlign.left,
                 style: TextStyle(
-                  color: colorSubtitle?.withOpacity(0.8),
+                  color:
+                      colorSubtitle?.withValues(alpha: (0.8 * 255).toDouble()),
                   fontSize: fontSizeSubtitle,
                 ),
               ),

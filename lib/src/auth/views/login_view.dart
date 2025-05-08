@@ -44,9 +44,11 @@ class _LoginPageState extends State<LoginPage> {
   void onVerification() {
     AuthService.login(
       phoneNumber: phoneController.text,
-    ).then((value) {
+    ).then((value) async {
       AuthService.onUserLogin();
-      Navigator.popAndPushNamed(context, HomePage.routeName);
+      if (mounted) {
+        Navigator.popAndPushNamed(context, HomePage.routeName);
+      }
     });
   }
 
@@ -57,7 +59,9 @@ class _LoginPageState extends State<LoginPage> {
       builder: (context, currentStep, child) {
         return PopScope(
           canPop: false,
-          onPopInvoked: (_) => onBackEvent(currentStep: currentStep),
+          onPopInvokedWithResult: (didPop, result) {
+            onBackEvent(currentStep: currentStep);
+          },
           child: GestureDetector(
             onTap: FocusManager.instance.primaryFocus?.unfocus,
             child: Scaffold(
@@ -112,7 +116,9 @@ class _LoginPageState extends State<LoginPage> {
           hasScrollBody: false,
           child: Container(
             constraints: BoxConstraints(
-                minHeight: context.mediaQuery.size.height - context.mediaQuery.padding.top - kToolbarHeight),
+                minHeight: context.mediaQuery.size.height -
+                    context.mediaQuery.padding.top -
+                    kToolbarHeight),
             child: SafeArea(
               child: Form(
                 key: keyPhoneForm,
@@ -125,7 +131,8 @@ class _LoginPageState extends State<LoginPage> {
                     const Gap(30),
                     const TitleText(
                       title: 'What\'s your phone number?',
-                      subtitle: 'Unregistered mobile phone numbers will be automatically registered',
+                      subtitle:
+                          'Unregistered mobile phone numbers will be automatically registered',
                       fontSizeTitle: 22,
                       spacer: 27,
                       fontSizeSubtitle: 16,
@@ -146,7 +153,8 @@ class _LoginPageState extends State<LoginPage> {
                       onPressed: () {
                         if (keyPhoneForm.currentState!.validate()) {
                           FocusManager.instance.primaryFocus?.unfocus();
-                          pageController.nextPage(duration: pageDuration, curve: pageCurve);
+                          pageController.nextPage(
+                              duration: pageDuration, curve: pageCurve);
                         }
                       },
                     ),
@@ -168,7 +176,9 @@ class _LoginPageState extends State<LoginPage> {
           hasScrollBody: false,
           child: Container(
             constraints: BoxConstraints(
-                minHeight: context.mediaQuery.size.height - context.mediaQuery.padding.top - kToolbarHeight),
+                minHeight: context.mediaQuery.size.height -
+                    context.mediaQuery.padding.top -
+                    kToolbarHeight),
             child: SafeArea(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -201,11 +211,14 @@ class _LoginPageState extends State<LoginPage> {
                       fieldHeight: 50,
                       fieldWidth: 50,
                       shape: PinCodeFieldShape.circle,
-                      activeFillColor: context.theme.colorScheme.primaryContainer,
+                      activeFillColor:
+                          context.theme.colorScheme.primaryContainer,
                       activeColor: context.theme.colorScheme.primaryContainer,
-                      inactiveFillColor: context.theme.colorScheme.primaryContainer,
+                      inactiveFillColor:
+                          context.theme.colorScheme.primaryContainer,
                       inactiveColor: context.theme.colorScheme.primaryContainer,
-                      selectedFillColor: context.theme.colorScheme.primaryContainer,
+                      selectedFillColor:
+                          context.theme.colorScheme.primaryContainer,
                       selectedColor: context.theme.colorScheme.primaryContainer,
                     ),
                     backgroundColor: context.theme.colorScheme.surface,
@@ -220,7 +233,9 @@ class _LoginPageState extends State<LoginPage> {
                   const Gap(50),
                   AppRoundedButton(
                     label: 'Continue',
-                    onPressed: codeVerificatioController.text.length < 4 ? null : onVerification,
+                    onPressed: codeVerificatioController.text.length < 4
+                        ? null
+                        : onVerification,
                   ),
                   const Spacer(),
                 ],

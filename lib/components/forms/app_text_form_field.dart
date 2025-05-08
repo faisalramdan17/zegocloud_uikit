@@ -2,6 +2,8 @@ import 'package:country_pickers/country.dart';
 import 'package:country_pickers/country_pickers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_libphonenumber/flutter_libphonenumber.dart'
+    as flutter_phone_number;
 import 'package:flutter_libphonenumber/flutter_libphonenumber.dart';
 import 'package:gap/gap.dart';
 
@@ -63,8 +65,10 @@ class _AppTextFormFieldState extends State<AppTextFormField> {
       _controller = widget.controller!;
     }
 
-    final phoneCode = CountryWithPhoneCode.getCountryDataByPhone(_controller.text)?.phoneCode;
-    _selectedDialogCountry = widget.initPhoneCode ?? CountryPickerUtils.getCountryByPhoneCode(phoneCode ?? '62');
+    final phoneCode =
+        CountryWithPhoneCode.getCountryDataByPhone(_controller.text)?.phoneCode;
+    _selectedDialogCountry = widget.initPhoneCode ??
+        CountryPickerUtils.getCountryByPhoneCode(phoneCode ?? '62');
     _controller.addListener(() {
       if (mounted) setState(() {});
     });
@@ -79,14 +83,17 @@ class _AppTextFormFieldState extends State<AppTextFormField> {
   @override
   void didChangeDependencies() async {
     super.didChangeDependencies();
-    if (widget.keyboardType == TextInputType.phone && _controller.text.isNotEmpty) {
-      var formated = await FlutterLibphonenumber().getFormattedParseResult(
+    if (widget.keyboardType == TextInputType.phone &&
+        _controller.text.isNotEmpty) {
+      var formated = await flutter_phone_number.getFormattedParseResult(
         _controller.text,
-        CountryWithPhoneCode.getCountryDataByPhone(_controller.text) ?? const CountryWithPhoneCode.us(),
+        CountryWithPhoneCode.getCountryDataByPhone(_controller.text) ??
+            const CountryWithPhoneCode.us(),
       );
 
       _controller.text = formated?.formattedNumber ?? _controller.text;
-      _controller.selection = TextSelection.collapsed(offset: _controller.text.length);
+      _controller.selection =
+          TextSelection.collapsed(offset: _controller.text.length);
     }
   }
 
@@ -104,10 +111,13 @@ class _AppTextFormFieldState extends State<AppTextFormField> {
         keyboardType: widget.keyboardType,
         onChanged: (value) async {
           if (widget.keyboardType == TextInputType.phone) {
-            var formated = await FlutterLibphonenumber().getFormattedParseResult(
-                value, CountryWithPhoneCode.getCountryDataByPhone(value) ?? const CountryWithPhoneCode.us());
+            var formated = await flutter_phone_number.getFormattedParseResult(
+                value,
+                CountryWithPhoneCode.getCountryDataByPhone(value) ??
+                    const CountryWithPhoneCode.us());
             _controller.text = formated?.formattedNumber ?? value;
-            _controller.selection = TextSelection.collapsed(offset: _controller.text.length);
+            _controller.selection =
+                TextSelection.collapsed(offset: _controller.text.length);
           }
         },
         inputFormatters: <TextInputFormatter>[
@@ -158,7 +168,9 @@ class _AppTextFormFieldState extends State<AppTextFormField> {
         padding: const EdgeInsets.only(left: 17, bottom: 0, top: 0),
         margin: const EdgeInsets.only(right: 10),
         decoration: const BoxDecoration(
-          border: Border(right: BorderSide(color: Colors.grey)), // IconTheme.of(context).color!
+          border: Border(
+              right: BorderSide(
+                  color: Colors.grey)), // IconTheme.of(context).color!
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
@@ -166,7 +178,8 @@ class _AppTextFormFieldState extends State<AppTextFormField> {
             SizedBox(
               height: 15,
               width: 22,
-              child: CountryPickerUtils.getDefaultFlagImage(_selectedDialogCountry),
+              child: CountryPickerUtils.getDefaultFlagImage(
+                  _selectedDialogCountry),
             ),
             const Padding(
               padding: EdgeInsets.only(
@@ -202,7 +215,8 @@ class _AppTextFormFieldState extends State<AppTextFormField> {
             var oldPhoneCode = _selectedDialogCountry.phoneCode;
             var newPhoneCode = country.phoneCode;
             if (_controller.text.isNotEmpty) {
-              _controller.text = "+$newPhoneCode ${_controller.text.substring(oldPhoneCode.length + 1).trim()}";
+              _controller.text =
+                  "+$newPhoneCode ${_controller.text.substring(oldPhoneCode.length + 1).trim()}";
             }
             setState(() => _selectedDialogCountry = country);
           },
@@ -245,7 +259,8 @@ class TextInputCountry extends TextInputFormatter {
   TextInputCountry(this.country);
 
   @override
-  TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
+  TextEditingValue formatEditUpdate(
+      TextEditingValue oldValue, TextEditingValue newValue) {
     final prefixPhoneCode = "+${country.phoneCode} ";
 
     var oriText = newValue.text;
@@ -254,7 +269,8 @@ class TextInputCountry extends TextInputFormatter {
       oriText = oriText.substring(prefixPhoneCode.length).trim();
     }
 
-    var text = oriText == prefixPhoneCode.trim() ? "" : (prefixPhoneCode + oriText);
+    var text =
+        oriText == prefixPhoneCode.trim() ? "" : (prefixPhoneCode + oriText);
 
     return TextEditingValue(text: text);
   }

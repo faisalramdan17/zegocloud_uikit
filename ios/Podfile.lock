@@ -1,7 +1,11 @@
 PODS:
+  - audio_session (0.0.1):
+    - Flutter
   - audioplayers_darwin (0.0.1):
     - Flutter
-  - CryptoSwift (1.8.2)
+  - connectivity_plus (0.0.1):
+    - Flutter
+  - CryptoSwift (1.8.4)
   - device_info_plus (0.0.1):
     - Flutter
   - DKImagePickerController/Core (4.3.9):
@@ -42,12 +46,20 @@ PODS:
   - flutter_callkit_incoming_yoer (0.0.1):
     - CryptoSwift
     - Flutter
-  - flutter_libphonenumber (0.0.1):
+  - flutter_libphonenumber_ios (1.1.4):
     - Flutter
-    - PhoneNumberKit/PhoneNumberKitCore (= 3.3.4)
+    - PhoneNumberKit/PhoneNumberKitCore (= 3.8.0)
   - flutter_logs (0.0.1):
     - Flutter
     - ZIPFoundation
+  - flutter_ringtone_player (0.0.1):
+    - Flutter
+  - flutter_volume_controller (0.0.1):
+    - Flutter
+  - just_audio (0.0.1):
+    - Flutter
+    - FlutterMacOS
+  - Masonry (1.1.0)
   - native_device_orientation (0.0.1):
     - Flutter
   - package_info_plus (0.4.5):
@@ -57,55 +69,64 @@ PODS:
     - FlutterMacOS
   - permission_handler_apple (9.3.0):
     - Flutter
-  - PhoneNumberKit/PhoneNumberKitCore (3.3.4)
-  - SDWebImage (5.19.2):
-    - SDWebImage/Core (= 5.19.2)
-  - SDWebImage/Core (5.19.2)
+  - PhoneNumberKit/PhoneNumberKitCore (3.8.0)
+  - SDWebImage (5.21.0):
+    - SDWebImage/Core (= 5.21.0)
+  - SDWebImage/Core (5.21.0)
   - shared_preferences_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
-  - sqflite (0.0.3):
+  - sqflite_darwin (0.0.4):
     - Flutter
     - FlutterMacOS
   - SwiftyGif (5.4.5)
-  - vibration (1.7.5):
+  - vibration (3.0.0):
     - Flutter
   - wakelock_plus (0.0.1):
     - Flutter
   - zego_callkit (1.0.0):
     - Flutter
-  - "zego_express_engine (3.15.1+2)":
+  - zego_express_engine (3.20.0):
     - Flutter
   - zego_uikit (0.0.1):
     - Flutter
+    - Masonry
+    - zego_express_engine
+    - ZegoUIKitReport (= 0.2.10)
   - zego_uikit_prebuilt_call (0.0.1):
     - Flutter
   - zego_uikit_signaling_plugin (0.0.1):
     - Flutter
-  - zego_zim (2.16.0):
+  - zego_zim (2.20.0):
     - Flutter
-    - ZIM (= 2.16.0)
+    - ZIM (= 2.20.0)
   - zego_zpns (2.6.0):
     - Flutter
     - ZPNs (= 2.6.0)
-  - ZIM (2.16.0)
+  - ZegoUIKitReport (0.2.10)
+  - ZIM (2.20.0)
   - ZIPFoundation (0.9.19)
   - ZPNs (2.6.0)
 
 DEPENDENCIES:
+  - audio_session (from `.symlinks/plugins/audio_session/ios`)
   - audioplayers_darwin (from `.symlinks/plugins/audioplayers_darwin/ios`)
+  - connectivity_plus (from `.symlinks/plugins/connectivity_plus/ios`)
   - device_info_plus (from `.symlinks/plugins/device_info_plus/ios`)
   - file_picker (from `.symlinks/plugins/file_picker/ios`)
   - Flutter (from `Flutter`)
   - flutter_callkit_incoming_yoer (from `.symlinks/plugins/flutter_callkit_incoming_yoer/ios`)
-  - flutter_libphonenumber (from `.symlinks/plugins/flutter_libphonenumber/ios`)
+  - flutter_libphonenumber_ios (from `.symlinks/plugins/flutter_libphonenumber_ios/ios`)
   - flutter_logs (from `.symlinks/plugins/flutter_logs/ios`)
+  - flutter_ringtone_player (from `.symlinks/plugins/flutter_ringtone_player/ios`)
+  - flutter_volume_controller (from `.symlinks/plugins/flutter_volume_controller/ios`)
+  - just_audio (from `.symlinks/plugins/just_audio/darwin`)
   - native_device_orientation (from `.symlinks/plugins/native_device_orientation/ios`)
   - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
   - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
   - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
-  - sqflite (from `.symlinks/plugins/sqflite/darwin`)
+  - sqflite_darwin (from `.symlinks/plugins/sqflite_darwin/darwin`)
   - vibration (from `.symlinks/plugins/vibration/ios`)
   - wakelock_plus (from `.symlinks/plugins/wakelock_plus/ios`)
   - zego_callkit (from `.symlinks/plugins/zego_callkit/ios`)
@@ -121,16 +142,22 @@ SPEC REPOS:
     - CryptoSwift
     - DKImagePickerController
     - DKPhotoGallery
+    - Masonry
     - PhoneNumberKit
     - SDWebImage
     - SwiftyGif
+    - ZegoUIKitReport
     - ZIM
     - ZIPFoundation
     - ZPNs
 
 EXTERNAL SOURCES:
+  audio_session:
+    :path: ".symlinks/plugins/audio_session/ios"
   audioplayers_darwin:
     :path: ".symlinks/plugins/audioplayers_darwin/ios"
+  connectivity_plus:
+    :path: ".symlinks/plugins/connectivity_plus/ios"
   device_info_plus:
     :path: ".symlinks/plugins/device_info_plus/ios"
   file_picker:
@@ -139,10 +166,16 @@ EXTERNAL SOURCES:
     :path: Flutter
   flutter_callkit_incoming_yoer:
     :path: ".symlinks/plugins/flutter_callkit_incoming_yoer/ios"
-  flutter_libphonenumber:
-    :path: ".symlinks/plugins/flutter_libphonenumber/ios"
+  flutter_libphonenumber_ios:
+    :path: ".symlinks/plugins/flutter_libphonenumber_ios/ios"
   flutter_logs:
     :path: ".symlinks/plugins/flutter_logs/ios"
+  flutter_ringtone_player:
+    :path: ".symlinks/plugins/flutter_ringtone_player/ios"
+  flutter_volume_controller:
+    :path: ".symlinks/plugins/flutter_volume_controller/ios"
+  just_audio:
+    :path: ".symlinks/plugins/just_audio/darwin"
   native_device_orientation:
     :path: ".symlinks/plugins/native_device_orientation/ios"
   package_info_plus:
@@ -153,8 +186,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/permission_handler_apple/ios"
   shared_preferences_foundation:
     :path: ".symlinks/plugins/shared_preferences_foundation/darwin"
-  sqflite:
-    :path: ".symlinks/plugins/sqflite/darwin"
+  sqflite_darwin:
+    :path: ".symlinks/plugins/sqflite_darwin/darwin"
   vibration:
     :path: ".symlinks/plugins/vibration/ios"
   wakelock_plus:
@@ -175,38 +208,45 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/zego_zpns/ios"
 
 SPEC CHECKSUMS:
+  audio_session: 19e9480dbdd4e5f6c4543826b2e8b0e4ab6145fe
   audioplayers_darwin: 877d9a4d06331c5c374595e46e16453ac7eafa40
-  CryptoSwift: c63a805d8bb5e5538e88af4e44bb537776af11ea
-  device_info_plus: 97af1d7e84681a90d0693e63169a5d50e0839a0d
+  connectivity_plus: 2a701ffec2c0ae28a48cf7540e279787e77c447d
+  CryptoSwift: e64e11850ede528a02a0f3e768cec8e9d92ecb90
+  device_info_plus: bf2e3232933866d73fe290f2942f2156cdd10342
   DKImagePickerController: 946cec48c7873164274ecc4624d19e3da4c1ef3c
   DKPhotoGallery: b3834fecb755ee09a593d7c9e389d8b5d6deed60
-  file_picker: 09aa5ec1ab24135ccd7a1621c46c84134bfd6655
+  file_picker: b159e0c068aef54932bb15dc9fd1571818edaf49
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
   flutter_callkit_incoming_yoer: a5936b9f065762a7b422594028d3a20901c88996
-  flutter_libphonenumber: 8e7a8f974fda0f5915cf0af846879adf90b08f51
+  flutter_libphonenumber_ios: 5ad8620197bff91dd159d828b7544ec6956e86a1
   flutter_logs: 5d0dca26963e0f30b11a995a764744ef77d5d428
+  flutter_ringtone_player: 15eba85187230b87b2512f0e1b92225618bc03e7
+  flutter_volume_controller: e4d5832f08008180f76e30faf671ffd5a425e529
+  just_audio: a42c63806f16995daf5b219ae1d679deb76e6a79
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   native_device_orientation: 348b10c346a60ebbc62fb235a4fdb5d1b61a8f55
-  package_info_plus: 58f0028419748fad15bf008b270aaa8e54380b1c
+  package_info_plus: c0502532a26c7662a62a356cebe2692ec5fe4ec4
   path_provider_foundation: 2b6b4c569c0fb62ec74538f866245ac84301af46
   permission_handler_apple: 9878588469a2b0d0fc1e048d9f43605f92e6cec2
-  PhoneNumberKit: 441e8b26ec88d598e3591de9061eff18f5dd12e8
-  SDWebImage: dfe95b2466a9823cf9f0c6d01217c06550d7b29a
+  PhoneNumberKit: ec00ab8cef5342c1dc49fadb99d23fa7e66cf0ef
+  SDWebImage: f84b0feeb08d2d11e6a9b843cb06d75ebf5b8868
   shared_preferences_foundation: fcdcbc04712aee1108ac7fda236f363274528f78
-  sqflite: 673a0e54cc04b7d6dba8d24fb8095b31c3a99eec
+  sqflite_darwin: 5a7236e3b501866c1c9befc6771dfd73ffb8702d
   SwiftyGif: 706c60cf65fa2bc5ee0313beece843c8eb8194d4
-  vibration: 7d883d141656a1c1a6d8d238616b2042a51a1241
-  wakelock_plus: 78ec7c5b202cab7761af8e2b2b3d0671be6c4ae1
+  vibration: 3797858f8cbf53d841e189ef8bd533d96e4ca93c
+  wakelock_plus: 76957ab028e12bfa4e66813c99e46637f367fc7e
   zego_callkit: 72593f46ed01779c4cee6bc65d2e0e1cde86b42c
-  zego_express_engine: 7ad6d778bbecece59c0dbf1abf6e150117f37da8
-  zego_uikit: 596cd6edd0e5162a9a1d1f7fec5a79fa8899fb7b
+  zego_express_engine: 7c54fc7c12e6ff850e20bc6745658a08e396bc03
+  zego_uikit: 6ceebb00df6af92b2a7a16b15f98330035a5d911
   zego_uikit_prebuilt_call: 13173d7a3c6dcc1695cbdff15d19463acd1ca39c
   zego_uikit_signaling_plugin: 7fdfcd9f796b591c9cb8770609f4fa85178aa40e
-  zego_zim: b3fc958423218074c920c5e87252ed756afd7f4b
+  zego_zim: cdeb628eff2de7b22329a4b7758b32272a70dfb9
   zego_zpns: 282d9f9926ea5dff87efbafae8cf33fdada41f4f
-  ZIM: 689608cfd428d0ad6d6784c0c42f8d0bf7c29bc0
+  ZegoUIKitReport: a993f7ccc5d243998a7e601a60e16fcd6c084417
+  ZIM: 1376cbc14e92c31425d91a5bd0874c0b501e4e76
   ZIPFoundation: b8c29ea7ae353b309bc810586181fd073cb3312c
   ZPNs: 73bad0046a74e37315201053f9a0e7ac625d9436
 
-PODFILE CHECKSUM: 2a56da78bac3d1832826ae7be3bd1787d4f74d7c
+PODFILE CHECKSUM: 832fe92e5914d7aea871b53f07a542fa3a8d120f
 
 COCOAPODS: 1.15.2

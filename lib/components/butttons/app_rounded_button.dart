@@ -30,12 +30,17 @@ class AppRoundedButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final borderRadius = BorderRadius.circular(30);
     final colorButton = onPressed == null
-        ? context.theme.shadowColor.withOpacity(0.5)
-        : (color ?? (useBorder ? context.theme.appBarTheme.backgroundColor : context.theme.colorScheme.primary));
+        ? context.theme.shadowColor.withValues(alpha: (0.5 * 255).toDouble())
+        : (color ??
+            (useBorder
+                ? context.theme.appBarTheme.backgroundColor
+                : context.theme.colorScheme.primary));
 
     return Padding(
-      padding:
-          !expanded ? const EdgeInsets.all(0) : (padding ?? const EdgeInsets.symmetric(horizontal: 30, vertical: 8)),
+      padding: !expanded
+          ? const EdgeInsets.all(0)
+          : (padding ??
+              const EdgeInsets.symmetric(horizontal: 30, vertical: 8)),
       child: InkWell(
         onTap: onPressed,
         borderRadius: borderRadius,
@@ -43,7 +48,9 @@ class AppRoundedButton extends StatelessWidget {
           decoration: BoxDecoration(
             color: colorButton,
             borderRadius: borderRadius,
-            border: colorButton!.computeLuminance() >= 0.5 && useBorder ? Border.all(color: Colors.grey) : null,
+            border: colorButton!.computeLuminance() >= 0.5 && useBorder
+                ? Border.all(color: Colors.grey)
+                : null,
           ),
           height: height,
           width: width ?? context.screenWidth,
@@ -61,7 +68,10 @@ class AppRoundedButton extends StatelessWidget {
                     TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
-                      color: labelColor ?? (colorButton.computeLuminance() >= 0.5 ? Colors.black87 : Colors.white),
+                      color: labelColor ??
+                          (colorButton.computeLuminance() >= 0.5
+                              ? Colors.black87
+                              : Colors.white),
                     ),
               ),
             ],

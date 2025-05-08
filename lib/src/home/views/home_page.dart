@@ -57,7 +57,9 @@ class HomePageState extends State<HomePage> {
                 onPressed: () {
                   AuthService.logout().then((value) {
                     AuthService.onUserLogout();
-                    Navigator.popAndPushNamed(context, LoginPage.routeName);
+                    if (context.mounted) {
+                      Navigator.popAndPushNamed(context, LoginPage.routeName);
+                    }
                   });
                 },
                 backgroundColor: Colors.red[400],
@@ -76,7 +78,8 @@ class HomePageState extends State<HomePage> {
             onPressed: () async {
               showModalBottomSheet(
                 context: context,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(17)),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(17)),
                 builder: (_) {
                   return ContactAddingForm(
                     onSaved: () => loadData(),
@@ -100,8 +103,10 @@ class HomePageState extends State<HomePage> {
               return ListView.separated(
                 shrinkWrap: true,
                 // physics: const NeverScrollableScrollPhysics(),
-                padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 24),
-                separatorBuilder: (context, index) => const Divider(height: 0.3, color: Colors.black26),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 24, horizontal: 24),
+                separatorBuilder: (context, index) =>
+                    const Divider(height: 0.3, color: Colors.black26),
                 itemCount: contactList.length,
                 itemBuilder: (context, index) {
                   final item = contactList[index];
@@ -132,7 +137,8 @@ class HomePageState extends State<HomePage> {
                           width: 35,
                           child: CloseButton(
                             onPressed: () async {
-                              await HomeService.removeContact(phoneNumber: item.phoneNumber);
+                              await HomeService.removeContact(
+                                  phoneNumber: item.phoneNumber);
                               loadData();
                             },
                             color: Colors.red,
